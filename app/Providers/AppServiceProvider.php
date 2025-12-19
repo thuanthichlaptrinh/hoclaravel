@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\ThongBao;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +12,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // class, service
+        // $this->app->bind('ThongBaoT', function() {
+        //     return new ThongBao();
+        // });
+
+        $this->app->singleton('ThongBaoT', function() {
+            return new ThongBao();
+        });
     }
 
     /**
