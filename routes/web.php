@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -78,3 +79,33 @@ Route::put('/user', function(Request $request) {
 
     return 'Tên sau khi update là: ' . session('name');
 })->name('user-get');
+
+Route::get('/user/{id}', function($id) {
+    return 'Người dùng có id là: ' . $id;
+});
+
+Route::get('/user/{id}/{type}', function($id, $type) {
+    return 'Người dùng có id là: ' . $id . '</br>' . 'Type: ' . $type;
+});
+
+// ================ HomeController ================
+// Route::get('/home', [HomeController::class, 'index']);
+
+// Gom nhóm route chung controller HomeController
+Route::controller(HomeController::class)->group(function() {
+    Route::get('/home', 'index');
+    Route::get('/home2', 'index2');
+    Route::get('/home3', 'index3');
+});
+
+// admin/user/{id}
+// admin/dashboard
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::get('/user/{id}', function($id) {
+        return 'Route User - Admin: ' . $id;
+    });
+
+    Route::get('/dashboard', function() {
+        return 'Route Route dashboard - Admin';
+    });
+});
