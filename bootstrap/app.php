@@ -11,8 +11,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // middleware toàn cục
+        // $middleware->append(App\Http\Middleware\CheckOld::class);
+
+        // middleware cho route test-age
+        $middleware->alias([
+            'check.age' => App\Http\Middleware\CheckOld::class,
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
-    })->create();
+    })
+    ->create();

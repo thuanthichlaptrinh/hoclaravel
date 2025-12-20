@@ -109,3 +109,13 @@ Route::prefix('admin')->name('admin.')->group(function() {
         return 'Route Route dashboard - Admin';
     });
 });
+
+// ================ Middleware ================
+Route::get('/kiem-tra', function() {
+    return 'Bạn đã đủ tuổi truy cập trang này';
+});
+
+Route::get('/kiem-tra/{age}', function() {
+    return 'ok';
+})->name('test-age')->middleware('check.age');
+
