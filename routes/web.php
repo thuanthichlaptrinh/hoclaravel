@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,3 +48,33 @@ Route::get('/cache-get-fa', function () {
 
     return 'Giá trị trong cache: ' . $name;
 });
+
+// ================ Tin tức ================
+Route::match(['get', 'post'], '/tin-tuc', function(Request $request) {
+    // Kiểm tra method post
+    if($request->isMethod('post')) {
+        return 'Đây là trang tin tức - method POST';
+    }
+
+    // Mặc định là method get
+    return view('tintuc');
+});
+
+// Route::post('/tin-tuc', function() {
+//     return view('post-new');
+// })->name('post-new');
+
+// ================ user ================
+Route::get('/user', function() {
+    // Lưu tên người dùng lên session
+    session(['name' => 'Nguyen Van A']);
+    return 'Tên hiện tại là: ' . session('name');
+});
+
+Route::put('/user', function(Request $request) {
+    // Lưu tên người dùng lên session
+    $newName = $request->input('fullname');
+    session(['name' => $newName]);
+
+    return 'Tên sau khi update là: ' . session('name');
+})->name('user-get');
