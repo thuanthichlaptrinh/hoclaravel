@@ -52,15 +52,15 @@ Route::get('/cache-get-fa', function () {
 });
 
 // ================ Tin tức ================
-Route::match(['get', 'post'], '/tin-tuc', function(Request $request) {
-    // Kiểm tra method post
-    if($request->isMethod('post')) {
-        return 'Đây là trang tin tức - method POST';
-    }
+// Route::match(['get', 'post'], '/tin-tuc', function(Request $request) {
+//     // Kiểm tra method post
+//     if($request->isMethod('post')) {
+//         return 'Đây là trang tin tức - method POST';
+//     }
 
-    // Mặc định là method get
-    return view('tintuc');
-});
+//     // Mặc định là method get
+//     return view('tintuc');
+// });
 
 // Route::post('/tin-tuc', function() {
 //     return view('post-new');
@@ -125,3 +125,7 @@ Route::controller(ProductController::class)->group(function() {
     Route::get('/product/{soluong}', 'soluong');
     Route::get('/product/danhsach/{ds}', 'danhsach');
 });
+
+// ================ Bài 13: HTTP Request trong Laravel ================
+Route::get('/tin-tuc', [HomeController::class, 'index2']);
+Route::post('/tin-tuc', [HomeController::class, 'index']);
