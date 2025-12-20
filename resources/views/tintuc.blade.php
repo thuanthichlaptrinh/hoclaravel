@@ -1,4 +1,5 @@
 <h1>View tin tuc</h1>
+<?php echo $ds; ?>
 
 <form action="/tin-tuc" method="POST">
     @csrf

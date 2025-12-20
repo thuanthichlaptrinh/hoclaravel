@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -110,7 +111,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     });
 });
 
-// ================ Middleware ================
+// ================ Bài 11. Middleware ================
 Route::get('/kiem-tra', function() {
     return 'Bạn đã đủ tuổi truy cập trang này';
 });
@@ -119,3 +120,8 @@ Route::get('/kiem-tra/{age}', function() {
     return 'ok';
 })->name('test-age')->middleware('check.age');
 
+// ================ Bài 12. Controller & View ================
+Route::controller(ProductController::class)->group(function() {
+    Route::get('/product/{soluong}', 'soluong');
+    Route::get('/product/danhsach/{ds}', 'danhsach');
+});
