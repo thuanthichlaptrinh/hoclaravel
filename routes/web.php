@@ -146,3 +146,6 @@ Route::get('/test', function() {
     return response()
     ->download(storage_path('app/public/images/pNzszFeV7rLn9OfIKsrsL9ES6qAELd8BsiXECsat.jpg'));
 });
+
+// ================ Bài 16: HTTP Response trong Laravel ================
+Route::get('/test2', [HomeController::class, 'index3']);
