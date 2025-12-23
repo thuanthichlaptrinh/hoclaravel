@@ -13,3 +13,21 @@
         <button type="submit">Submit</button>
     </form>
 @endsection
+
+{{-- Component có truyền class --}}
+<x-alert type="success">
+    <x-slot name="message">Đăng ký thành công!</x-slot>
+</x-alert>
+
+<x-alert type="danger">
+    <x-slot name="message">Đăng ký không thành công!</x-slot>
+</x-alert>
+
+<x-alert type="warning">
+    <x-slot name="message">Cảnh báo!</x-slot>
+</x-alert>
+
+{{-- Component không truyền class --}}
+<x-message>
+    Đây là message component
+</x-message>
