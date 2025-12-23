@@ -82,8 +82,25 @@ class HomeController extends Controller
     ['data' => $data, 'data2' => $data2, 'age' => $age, 'tintuc' => $tintuc, 'products' => $products]);
     }
 
+    public function getUser() {
+        // Sử dụng SQL thuần
+        // $rel = DB::select("select * from users where id = 1");
+
+        // Query Builder
+        $rel = DB::table('users')->where('id', 2)->first();
+
+        echo '<pre>';
+        print_r($rel);
+        echo '</pre>';
+    }
+
     public function getUsers(){
-        $ds = DB::select("select * from users"); // Lấy danh sách user từ bảng users - sử dụng SQL thuần
+        // Sử dụng SQL thuần
+        // $ds = DB::select("select * from users");
+
+        // Query Builder
+         $ds = DB::table('users')->orderBy('create_at', 'desc')->get();
+        //$ds = DB::table('users')->limit(2)->offset(1)->get();
 
         echo '<pre>';
         print_r($ds);
@@ -93,19 +110,39 @@ class HomeController extends Controller
     public function insertUser(){
         $datet = date('Y-m-d H:i:s');
 
-        $result = DB::insert("INSERT INTO users (id, fullname, email, create_at) VALUES (4, 'vanc', 'vanc@gmail.com', '$datet')");
+        // Sử dụng SQL thuần
+        // $result = DB::insert("INSERT INTO users (id, fullname, email, create_at) VALUES (4, 'vanc', 'vanc@gmail.com', '$datet')");
+
+        // Query Builder
+        $result = DB::table(('users'))->insert([
+            'id' => 5,
+            'fullname' => 'Nguyen Van D',
+            'email' => 'fa@gmail.com',
+            'create_at' => $datet
+        ]);
 
         echo $result ? 'Thêm thành công' : 'Thêm thất bại';
     }
 
     public function updateUser() {
-        $result = DB::update("UPDATE users SET fullname = 'Nguyen Van C' WHERE id = 3");
+        // Sử dụng SQL thuần
+        // $result = DB::update("UPDATE users SET fullname = 'Nguyen Van C' WHERE id = 3");
+
+        // Query Builder
+        $result = DB::table('users')->where('id', 5)->update([
+            'email' => 'vand@gmail.com'
+            //...
+        ]);
 
         echo $result ? 'Cập nhật thành công' : 'Cập nhật thất bại';
     }
 
     public function deleteUser() {
-        $result = DB::delete("DELETE FROM users WHERE id = 4");
+        // Sử dụng SQL thuần
+        // $result = DB::delete("DELETE FROM users WHERE id = 4");
+
+        // Query Builder
+        $result = DB::table("users")->where('id', 5)->delete();
 
         echo $result ? 'Xóa thành công' : 'Xóa thất bại';
     }

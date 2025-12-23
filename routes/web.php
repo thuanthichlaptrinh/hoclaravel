@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
@@ -151,7 +152,15 @@ Route::get('/test', function() {
 Route::get('/test2', [HomeController::class, 'index3']);
 
 // ================ Bài 17: Database ================
+Route::get('/nguoi-dung', [HomeController::class, 'getUser']);
 Route::get('/nguoi-dungs', [HomeController::class, 'getUsers']);
 Route::get('/them-nguoi-dung', [HomeController::class, 'insertUser']);
 Route::get('/sua-nguoi-dung', [HomeController::class, 'updateUser']);
 Route::get('/xoa-nguoi-dung', [HomeController::class, 'deleteUser']);
+
+// ================ Bài 18: Eloquent ORM ================
+Route::get('/posts', [PostController::class, 'getPosts']);
+Route::get('/post', [PostController::class, 'getPost']);
+Route::get('/insert-post', [PostController::class, 'insertPost']);
+Route::get('/update-post', [PostController::class, 'updatePost']);
+Route::get('/delete-post', [PostController::class, 'deletePost']);
