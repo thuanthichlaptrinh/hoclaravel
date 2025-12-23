@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
@@ -80,4 +81,33 @@ class HomeController extends Controller
         return view('parts.blog',
     ['data' => $data, 'data2' => $data2, 'age' => $age, 'tintuc' => $tintuc, 'products' => $products]);
     }
+
+    public function getUsers(){
+        $ds = DB::select("select * from users"); // Lấy danh sách user từ bảng users - sử dụng SQL thuần
+
+        echo '<pre>';
+        print_r($ds);
+        echo '</pre>';
+    }
+
+    public function insertUser(){
+        $datet = date('Y-m-d H:i:s');
+
+        $result = DB::insert("INSERT INTO users (id, fullname, email, create_at) VALUES (4, 'vanc', 'vanc@gmail.com', '$datet')");
+
+        echo $result ? 'Thêm thành công' : 'Thêm thất bại';
+    }
+
+    public function updateUser() {
+        $result = DB::update("UPDATE users SET fullname = 'Nguyen Van C' WHERE id = 3");
+
+        echo $result ? 'Cập nhật thành công' : 'Cập nhật thất bại';
+    }
+
+    public function deleteUser() {
+        $result = DB::delete("DELETE FROM users WHERE id = 4");
+
+        echo $result ? 'Xóa thành công' : 'Xóa thất bại';
+    }
+
 }

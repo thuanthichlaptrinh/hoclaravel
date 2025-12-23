@@ -149,3 +149,9 @@ Route::get('/test', function() {
 
 // ================ Bài 16: HTTP Response trong Laravel ================
 Route::get('/test2', [HomeController::class, 'index3']);
+
+// ================ Bài 17: Database ================
+Route::get('/nguoi-dungs', [HomeController::class, 'getUsers']);
+Route::get('/them-nguoi-dung', [HomeController::class, 'insertUser']);
+Route::get('/sua-nguoi-dung', [HomeController::class, 'updateUser']);
+Route::get('/xoa-nguoi-dung', [HomeController::class, 'deleteUser']);
