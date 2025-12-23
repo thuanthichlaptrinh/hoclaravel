@@ -129,3 +129,20 @@ Route::controller(ProductController::class)->group(function() {
 // ================ Bài 13: HTTP Request trong Laravel ================
 Route::get('/tin-tuc', [HomeController::class, 'index2']);
 Route::post('/tin-tuc', [HomeController::class, 'index']);
+
+// ================ Bài 14: HTTP Response trong Laravel ================
+Route::get('/test', function() {
+    // Trả về 1 json
+    // return response()->json([
+    //     'name' => 'Thuận',
+    //     'email' => 'thuan@example.com'
+    // ], 200);
+
+    // Trả về res có phần header
+    //return response('Hello World', 200);
+        //->header('Content-Type', 'text/plain');
+
+    // Trả về file download
+    return response()
+    ->download(storage_path('app/public/images/pNzszFeV7rLn9OfIKsrsL9ES6qAELd8BsiXECsat.jpg'));
+});
