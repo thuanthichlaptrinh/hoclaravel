@@ -34,7 +34,24 @@ class HomeController extends Controller
     }
 
     public function index2(Request $request) {
-        return view('tintuc');
+        $data = 'test blade';
+        $data2 = '<strong>Thuan</strong>';
+        $age = 18;
+        $tintuc = [
+            'title' => 'Tiêu đề bài viết',
+            'content' => 'Nội dung bài viết'
+        ];
+
+        $products = [
+            [
+                'name' => 'iPhone 13',
+                'price' => 20000000,
+                'category' => 'Điện thoại'
+            ]
+        ];
+
+        return view('tintuc',
+            ['data' => $data, 'data2' => $data2, 'age' => $age, 'tintuc' => $tintuc, 'products' => $products]);
     }
 
     // public function index2(Request $request) {
