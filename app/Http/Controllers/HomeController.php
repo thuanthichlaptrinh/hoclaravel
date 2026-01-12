@@ -99,7 +99,7 @@ class HomeController extends Controller
         // $ds = DB::select("select * from users");
 
         // Query Builder
-         $ds = DB::table('users')->orderBy('create_at', 'desc')->get();
+         $ds = DB::table('users')->orderBy('created_at', 'desc')->get();
         //$ds = DB::table('users')->limit(2)->offset(1)->get();
 
         echo '<pre>';
@@ -111,14 +111,14 @@ class HomeController extends Controller
         $datet = date('Y-m-d H:i:s');
 
         // Sử dụng SQL thuần
-        // $result = DB::insert("INSERT INTO users (id, fullname, email, create_at) VALUES (4, 'vanc', 'vanc@gmail.com', '$datet')");
+        // $result = DB::insert("INSERT INTO users (id, fullname, email, created_at) VALUES (4, 'vanc', 'vanc@gmail.com', '$datet')");
 
         // Query Builder
         $result = DB::table(('users'))->insert([
             'id' => 5,
             'fullname' => 'Nguyen Van D',
             'email' => 'fa@gmail.com',
-            'create_at' => $datet
+            'created_at' => $datet
         ]);
 
         echo $result ? 'Thêm thành công' : 'Thêm thất bại';

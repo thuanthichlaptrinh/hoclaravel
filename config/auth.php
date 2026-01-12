@@ -37,9 +37,13 @@ return [
 
     'guards' => [
         'web' => [
+            'driver' => 'session', // cách xác thực là dùng driver Auth::guard('web')->user()
+            'provider' => 'users', // giúp laravel biết được lấy user từ bảng nào, model nào
+        ],
+        'api' => [
             'driver' => 'session',
             'provider' => 'users',
-        ],
+        ]
     ],
 
     /*
